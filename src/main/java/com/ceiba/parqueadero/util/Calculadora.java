@@ -10,7 +10,6 @@ public class Calculadora {
 	static final int HORA_MOTO = 500;
 	static final int DIA_MOTO = 4000;
 
-	
 	public static long cobroParqueadero(int tipo, Date fechaActual, Date fechaIngreso) {
 		
 		int cobroHora;

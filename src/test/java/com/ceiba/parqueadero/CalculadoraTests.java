@@ -19,7 +19,7 @@ public class CalculadoraTests {
 	
 
 	@Test
-	public void cobro_1_hora_moto(){	
+	public void cobro1HoraMoto(){	
 		//arrange
 		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
 		Date fechaSalida = new GregorianCalendar(2018,6,28,8,35).getTime(); //yyyy/mm/dd/HH/mm
@@ -30,7 +30,7 @@ public class CalculadoraTests {
 	}
 	
 	@Test
-	public void cobro_2_hora_moto(){	
+	public void cobro2HoraMoto(){	
 		//arrange
 		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
 		Date fechaSalida = new GregorianCalendar(2018,6,28,9,35).getTime(); //yyyy/mm/dd/HH/mm
@@ -40,7 +40,7 @@ public class CalculadoraTests {
 		Assert.assertEquals(1000,resultado);
 	}
 	@Test
-	public void cobro_3_hora_moto(){	
+	public void cobro3HoraMoto(){	
 		//arrange
 		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
 		Date fechaSalida = new GregorianCalendar(2018,6,28,10,35).getTime(); //yyyy/mm/dd/HH/mm
@@ -50,7 +50,7 @@ public class CalculadoraTests {
 		Assert.assertEquals(1500,resultado);
 	}
 	@Test
-	public void cobro_1_dia_moto(){	
+	public void cobro1DiaMoto(){	
 		//arrange
 		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
 		Date fechaSalida = new GregorianCalendar(2018,6,28,18,35).getTime(); //yyyy/mm/dd/HH/mm
@@ -60,7 +60,7 @@ public class CalculadoraTests {
 		Assert.assertEquals(4000,resultado); 
 	}
 	@Test
-	public void cobro_1_dia_horas_moto(){	
+	public void cobro1DiaYHorasMoto(){	
 		//arrange
 		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
 		Date fechaSalida = new GregorianCalendar(2018,6,29,9,35).getTime(); //yyyy/mm/dd/HH/mm
@@ -70,19 +70,18 @@ public class CalculadoraTests {
 		Assert.assertEquals(5000,resultado); 
 	}
 	@Test
-	public void cobro_3_dia_moto(){	
+	public void cobro3DiasMoto(){	
 		//arrange
-		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
-		Date fechaSalida = new GregorianCalendar(2018,6,30,18,35).getTime(); //yyyy/mm/dd/HH/mm
+		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); 
+		Date fechaSalida = new GregorianCalendar(2018,6,30,18,35).getTime(); 
 		//act	
 		long resultado=Calculadora.cobroParqueadero(MOTO,fechaSalida,fechaIngreso);
 		//assert	
 		Assert.assertEquals(12000,resultado); 
 	}
-	////// //////////////////////////////   Pruebas carro
 	
 	@Test
-	public void cobro_1_hora_carro(){	
+	public void cobro1HoraCarro(){	
 		//arrange
 		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
 		Date fechaSalida = new GregorianCalendar(2018,6,28,8,35).getTime(); //yyyy/mm/dd/HH/mm
@@ -93,7 +92,7 @@ public class CalculadoraTests {
 	}
 	
 	@Test
-	public void cobro_2_hora_carro(){	
+	public void cobro2HoraCarro(){	
 		//arrange
 		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
 		Date fechaSalida = new GregorianCalendar(2018,6,28,9,35).getTime(); //yyyy/mm/dd/HH/mm
@@ -103,7 +102,7 @@ public class CalculadoraTests {
 		Assert.assertEquals(2000,resultado);
 	}
 	@Test
-	public void cobro_3_hora_carro(){	
+	public void cobro3HoraCarro(){	
 		//arrange
 		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
 		Date fechaSalida = new GregorianCalendar(2018,6,28,10,35).getTime(); //yyyy/mm/dd/HH/mm
@@ -113,7 +112,7 @@ public class CalculadoraTests {
 		Assert.assertEquals(3000,resultado);//fecha ingreso 7:04am
 	}
 	@Test
-	public void cobro_1_dia_carro(){	
+	public void cobro1DiaCarro(){	
 		//arrange
 		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
 		Date fechaSalida = new GregorianCalendar(2018,6,28,18,35).getTime(); //yyyy/mm/dd/HH/mm
@@ -123,7 +122,7 @@ public class CalculadoraTests {
 		Assert.assertEquals(8000,resultado); 
 	}
 	@Test
-	public void cobro1_dia_horas_carro(){	
+	public void cobro1DiaYHorasCarro(){	
 		//arrange
 		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
 		Date fechaSalida = new GregorianCalendar(2018,6,29,8,35).getTime(); //yyyy/mm/dd/HH/mm
@@ -133,7 +132,7 @@ public class CalculadoraTests {
 		Assert.assertEquals(9000,resultado); 
 	}
 	@Test
-	public void cobro_3_dia_carro(){	
+	public void cobro3DiasCarro(){	
 		//arrange
 		Date fechaIngreso = new GregorianCalendar(2018,6,28,7,55).getTime(); //yyyy/mm/dd/HH/mm
 		Date fechaSalida = new GregorianCalendar(2018,6,30,18,35).getTime(); //yyyy/mm/dd/HH/mm

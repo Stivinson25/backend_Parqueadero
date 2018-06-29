@@ -23,27 +23,49 @@ public class FichaTecnicaDeIngreso  implements Serializable{
 
 	private static final long serialVersionUID = -4431929601983510578L;
 
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", unique = true)
 	private long id;
 	
 	@Column(name = "placa", nullable = false, length = 255)
 	private String placa;
 	
-	@Column(name = "tipo_vehiculo", nullable = false)
+	@Column(name = "tipo_vehiculo")
 	private int tipoVehiculo;
 	
-	@Column(name = "fecha_ingreso", updatable=false, nullable = false, length = 255)
+	@Column(name = "fecha_ingreso", updatable=false, length = 255)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaIngreso;
 	
-	@Column(name = "cilindraje", nullable = false)
+	@Column(name = "cilindraje")
 	private int cilindraje;
 	
-    @Column(name="estado", nullable = false, length = 9 )
-    @Enumerated(value = EnumType.ORDINAL)
+    @Column(name="estado", length = 9 )
+    @Enumerated(value = EnumType.STRING)
     private Estados estado;
+
+    
+    
+	public FichaTecnicaDeIngreso() {
+		super();
+	}
+	
+	
+
+	public FichaTecnicaDeIngreso(long id, String placa, int tipoVehiculo, Date fechaIngreso, int cilindraje,
+			Estados estado) {
+		super();
+		this.id = id;
+		this.placa = placa;
+		this.tipoVehiculo = tipoVehiculo;
+		this.fechaIngreso = fechaIngreso;
+		this.cilindraje = cilindraje;
+		this.estado = estado;
+	}
+
+
 
 	public long getId() {
 		return id;

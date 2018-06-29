@@ -5,10 +5,15 @@ import java.util.Date;
 
 public class Calculadora {
 	
+	public Calculadora() {
+		super();
+	}
+
 	static final int HORA_CARRO = 1000;
 	static final int DIA_CARRO = 8000;
 	static final int HORA_MOTO = 500;
 	static final int DIA_MOTO = 4000;
+	
 
 	public static long cobroParqueadero(int tipo, Date fechaActual, Date fechaIngreso) {
 		

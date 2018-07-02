@@ -3,9 +3,9 @@ package com.ceiba.parqueadero.util;
 import java.util.Date;
 
 
-public class Calculadora {
+public class Factura {
 	
-	public Calculadora() {
+	public Factura() {
 		super();
 	}
 

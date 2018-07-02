@@ -32,8 +32,8 @@ public class FichaTecnicaDeIngreso  implements Serializable{
 	@Column(name = "placa", nullable = false, length = 255)
 	private String placa;
 	
-	@Column(name = "tipo_vehiculo")
-	private int tipoVehiculo;
+    @Column(name="tipo_vehiculo")
+    private int tipoVehiculo;
 	
 	@Column(name = "fecha_ingreso", updatable=false, length = 255)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -46,13 +46,11 @@ public class FichaTecnicaDeIngreso  implements Serializable{
     @Enumerated(value = EnumType.STRING)
     private Estados estado;
 
-    
-    
+        
 	public FichaTecnicaDeIngreso() {
 		super();
 	}
-	
-	
+		
 
 	public FichaTecnicaDeIngreso(long id, String placa, int tipoVehiculo, Date fechaIngreso, int cilindraje,
 			Estados estado) {
@@ -90,6 +88,7 @@ public class FichaTecnicaDeIngreso  implements Serializable{
 	public void setTipoVehiculo(int tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 	}
+
 
 	public Date getFechaIngreso() {
 		return fechaIngreso;

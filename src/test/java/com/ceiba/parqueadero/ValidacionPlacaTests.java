@@ -14,9 +14,9 @@ public class ValidacionPlacaTests {
 	@Test
 	public void validarPlacaCarroA(){	
 		//arrange
-		FichaTecnicaDeIngreso ftdi = new FichaTecnicaDeIngreso(0,"AHG 56B",0,new Date(), 0,Estados.ACTIVO);
+		FichaTecnicaDeIngreso ftdi = new FichaTecnicaDeIngreso(0,"AHG56B",0,new Date(), 0,Estados.ACTIVO);
 		//act	
-		boolean resultado=Validacion.validacionPlaca(ftdi);
+		boolean resultado=Validacion.validacionPlaca(ftdi, null);
 		//assert	
 		Assert.assertTrue(resultado);
 	}

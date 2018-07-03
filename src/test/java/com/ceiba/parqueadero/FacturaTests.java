@@ -9,13 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ceiba.parqueadero.util.Factura;
+import com.ceiba.parqueadero.util.TipoVehiculo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FacturaTests {
 	
-	static final int CARRO = 1;
-	static final int MOTO = 2;
+	static final TipoVehiculo CARRO = TipoVehiculo.CARRO;
+	static final TipoVehiculo MOTO = TipoVehiculo.MOTO;
 	
 
 	@Test

@@ -3,6 +3,7 @@ package com.ceiba.parqueadero.servicio;
 import java.util.List;
 
 import com.ceiba.parqueadero.modelo.FichaTecnicaDeIngreso;
+import com.ceiba.parqueadero.util.TipoVehiculo;
 
 public interface FichaTecnicaDeIngresoServicio {
 
@@ -10,7 +11,7 @@ public interface FichaTecnicaDeIngresoServicio {
 	
 	FichaTecnicaDeIngreso findbyActivoYPlaca(String verificarPlaca);
 	
-	long countActivoYTipo(int tipo);
+	long countActivoYTipo(TipoVehiculo tipo);
 	
 	List<FichaTecnicaDeIngreso> findAll();
 

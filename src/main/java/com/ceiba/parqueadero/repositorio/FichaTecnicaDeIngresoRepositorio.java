@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ceiba.parqueadero.modelo.FichaTecnicaDeIngreso;
+import com.ceiba.parqueadero.util.TipoVehiculo;
 
  public interface FichaTecnicaDeIngresoRepositorio extends JpaRepository<FichaTecnicaDeIngreso,Long> {
 
@@ -17,7 +18,7 @@ import com.ceiba.parqueadero.modelo.FichaTecnicaDeIngreso;
 	 FichaTecnicaDeIngreso findbyActivoYPlaca(@Param("verificarPlaca") String verificarPlaca);
 
 	 @Query(value = "SELECT count(*) FROM parqueadero.ficha_tecnica_ingresos where estado='ACTIVO' AND tipo_vehiculo=:tipo",nativeQuery = true)
-	 long countActivoYTipo(@Param("tipo") int tipo);
+	 long countActivoYTipo(@Param("tipo") TipoVehiculo tipo);
 	 
 	 List<FichaTecnicaDeIngreso> findAll();
 	

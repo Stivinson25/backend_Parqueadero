@@ -15,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.ceiba.parqueadero.util.Estados;
+import com.ceiba.parqueadero.util.TipoVehiculo;
 
 @Entity
 @Table(name="ficha_tecnica_ingresos")
@@ -32,9 +33,10 @@ public class FichaTecnicaDeIngreso  implements Serializable{
 	@Column(name = "placa", nullable = false, length = 255)
 	private String placa;
 	
-    @Column(name="tipo_vehiculo")
-    private int tipoVehiculo;
-	
+    @Column(name="tipo_vehiculo", length = 9 )
+    @Enumerated(value = EnumType.STRING)
+    private TipoVehiculo tipoVehiculo;
+    
 	@Column(name = "fecha_ingreso", updatable=false, length = 255)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaIngreso;
@@ -52,7 +54,7 @@ public class FichaTecnicaDeIngreso  implements Serializable{
 	}
 		
 
-	public FichaTecnicaDeIngreso(long id, String placa, int tipoVehiculo, Date fechaIngreso, int cilindraje,
+	public FichaTecnicaDeIngreso(long id, String placa, TipoVehiculo tipoVehiculo, Date fechaIngreso, int cilindraje,
 			Estados estado) {
 		super();
 		this.id = id;
@@ -81,11 +83,11 @@ public class FichaTecnicaDeIngreso  implements Serializable{
 		this.placa = placa;
 	}
 
-	public int getTipoVehiculo() {
+	public TipoVehiculo getTipoVehiculo() {
 		return tipoVehiculo;
 	}
 
-	public void setTipoVehiculo(int tipoVehiculo) {
+	public void setTipoVehiculo(TipoVehiculo tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 

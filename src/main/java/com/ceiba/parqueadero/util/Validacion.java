@@ -9,15 +9,13 @@ import com.ceiba.parqueadero.modelo.FichaTecnicaDeIngreso;
 public class Validacion {
 	public static final int DOMINGO=1;
 	public static final int LUNES=2;
-	public static final int CARRO=1;
-	public static final int MOTO=2;
 	
-	public static boolean validacionPlaca(FichaTecnicaDeIngreso ftdi,FichaTecnicaDeIngreso ftdiBD) {
+	public boolean validacionPlaca(FichaTecnicaDeIngreso ftdi,FichaTecnicaDeIngreso ftdiBD) {
 			
 			if(!valiadacionCampos(ftdi)) {
 				return false;
 			}else if(ftdiBD==null) {
-				if(ftdi.getTipoVehiculo()== CARRO && ftdi.getPlaca().charAt(0) == 'A') {
+				if(validarTipoYPlaca(ftdi)) {
 					return diaDeLaSemana();
 				}
 				return true;
@@ -29,7 +27,14 @@ public class Validacion {
 
 
 
-	public static boolean diaDeLaSemana() {
+	public boolean validarTipoYPlaca(FichaTecnicaDeIngreso ftdi) {
+		return ftdi.getTipoVehiculo()== TipoVehiculo.CARRO && ftdi.getPlaca().charAt(0) == 'A';
+	}
+
+
+
+
+	public boolean diaDeLaSemana() {
 		GregorianCalendar cal = new GregorianCalendar();
 		cal.setTime(new Date());
 		int dia = cal.get(Calendar.DAY_OF_WEEK);
@@ -38,9 +43,9 @@ public class Validacion {
 
 	
 	
-	public static boolean valiadacionCampos(FichaTecnicaDeIngreso ftdi) {
+	public boolean valiadacionCampos(FichaTecnicaDeIngreso ftdi) {
 		boolean esValido=true;
-		if(ftdi.getPlaca() == "" ||ftdi.getPlaca() == null ) {
+		if(ftdi.getPlaca() == "" || ftdi.getPlaca() == null ) {
 			esValido=false;
 		}
 		return esValido;

@@ -15,12 +15,12 @@ public class Factura {
 	static final int DIA_MOTO = 4000;
 	
 
-	public static long cobroParqueadero(int tipo, Date fechaActual, Date fechaIngreso) {
+	public static long cobroParqueadero(TipoVehiculo tipo, Date fechaActual, Date fechaIngreso) {
 		
 		int cobroHora;
 		int cobroDia;
 		
-		if(tipo == 1) {
+		if(tipo == TipoVehiculo.CARRO) {
 			cobroHora=HORA_CARRO;
 			cobroDia=DIA_CARRO;
 		}else {

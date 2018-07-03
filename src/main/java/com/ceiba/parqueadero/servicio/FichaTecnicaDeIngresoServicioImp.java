@@ -10,6 +10,7 @@ import com.ceiba.parqueadero.repositorio.FichaTecnicaDeIngresoRepositorio;
 import com.ceiba.parqueadero.util.Factura;
 import com.ceiba.parqueadero.util.Estados;
 import com.ceiba.parqueadero.util.RestIncorrecta;
+import com.ceiba.parqueadero.util.TipoVehiculo;
 import com.ceiba.parqueadero.util.Validacion;
 
 @Service
@@ -20,18 +21,16 @@ public class FichaTecnicaDeIngresoServicioImp implements FichaTecnicaDeIngresoSe
 
 	@Override
 	public void save(FichaTecnicaDeIngreso ftdi) {
-		
+		Validacion validacion = new Validacion();
 		FichaTecnicaDeIngreso ftdiBD= ftdiRepositorio.findbyActivoYPlaca(ftdi.getPlaca());
 		
-		//if(countActivoYTipo(ftdi.getTipoVehiculo())<20) {
-			if(!Validacion.validacionPlaca(ftdi,ftdiBD)) {
+			if(!validacion.validacionPlaca(ftdi,ftdiBD)) {
 				throw new RestIncorrecta("Los campos no estan diligenciados");
 			}
-		//}else throw new RestIncorrecta("No hay cupos disponibles");
 
-		//ftdi.setFechaIngreso(Calculadora.fechaActual());
-		//ftdi.setEstado(Estados.ACTIVO);
-		//this.ftdiRepositorio.save(ftdi);
+		ftdi.setFechaIngreso(Factura.fechaActual());
+		ftdi.setEstado(Estados.ACTIVO);
+		this.ftdiRepositorio.save(ftdi);
 	}
 
 	@Override
@@ -57,7 +56,7 @@ public class FichaTecnicaDeIngresoServicioImp implements FichaTecnicaDeIngresoSe
 	}
 
 	@Override
-	public long countActivoYTipo(int tipo) {
+	public long countActivoYTipo(TipoVehiculo tipo) {
 		return this.countActivoYTipo(tipo);
 	}
 

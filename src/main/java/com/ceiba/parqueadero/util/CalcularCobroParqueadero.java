@@ -3,9 +3,9 @@ package com.ceiba.parqueadero.util;
 import java.util.Date;
 
 
-public class Factura {
+public class CalcularCobroParqueadero {
 	
-	public Factura() {
+	public CalcularCobroParqueadero() {
 		super();
 	}
 
@@ -15,7 +15,7 @@ public class Factura {
 	static final int DIA_MOTO = 4000;
 	
 
-	public static long cobroParqueadero(TipoVehiculo tipo, Date fechaActual, Date fechaIngreso) {
+	public long cobroParqueadero(TipoVehiculo tipo, Date fechaActual, Date fechaIngreso) {
 		
 		int cobroHora;
 		int cobroDia;
@@ -31,7 +31,7 @@ public class Factura {
 		
 	}
 
-	public static long calcularPago(Date fechaActual, Date fechaIngreso, int cobroHora, int cobroDia) {
+	public long calcularPago(Date fechaActual, Date fechaIngreso, int cobroHora, int cobroDia) {
 		long pago=0;
 	    long dias=0;
 	    long horas=((fechaActual.getTime()-fechaIngreso.getTime())/1000)/3600;
@@ -55,7 +55,7 @@ public class Factura {
 	}
 
 	
-	public static Date fechaActual() {		
+	public Date fechaActual() {		
 		return new Date();
 	}
 	

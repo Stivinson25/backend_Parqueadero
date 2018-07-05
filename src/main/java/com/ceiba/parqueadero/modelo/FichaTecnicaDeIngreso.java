@@ -41,6 +41,10 @@ public class FichaTecnicaDeIngreso  implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaIngreso;
 	
+	@Column(name = "fecha_salida", updatable=false, length = 255)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaSalida;
+	
 	@Column(name = "cilindraje")
 	private int cilindraje;
 	
@@ -52,15 +56,26 @@ public class FichaTecnicaDeIngreso  implements Serializable{
 	public FichaTecnicaDeIngreso() {
 		super();
 	}
-		
 
-	public FichaTecnicaDeIngreso(long id, String placa, TipoVehiculo tipoVehiculo, Date fechaIngreso, int cilindraje,
+	public FichaTecnicaDeIngreso(String placa, TipoVehiculo tipoVehiculo, Date fechaIngreso , Date fechaSalida, int cilindraje,
+			Estados estado) {
+		super();
+		this.placa = placa;
+		this.tipoVehiculo = tipoVehiculo;
+		this.fechaIngreso = fechaIngreso;
+		this.fechaSalida = fechaSalida;
+		this.cilindraje = cilindraje;
+		this.estado = estado;
+	}
+
+	public FichaTecnicaDeIngreso(long id, String placa, TipoVehiculo tipoVehiculo, Date fechaIngreso , Date fechaSalida, int cilindraje,
 			Estados estado) {
 		super();
 		this.id = id;
 		this.placa = placa;
 		this.tipoVehiculo = tipoVehiculo;
 		this.fechaIngreso = fechaIngreso;
+		this.fechaSalida = fechaSalida;
 		this.cilindraje = cilindraje;
 		this.estado = estado;
 	}
@@ -114,6 +129,16 @@ public class FichaTecnicaDeIngreso  implements Serializable{
 
 	public void setEstado(Estados estado) {
 		this.estado = estado;
+	}
+
+
+	public Date getFechaSalida() {
+		return fechaSalida;
+	}
+
+
+	public void setFechaSalida(Date fechaSalida) {
+		this.fechaSalida = fechaSalida;
 	}
     
 

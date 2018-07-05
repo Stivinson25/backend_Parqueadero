@@ -14,7 +14,6 @@ public class CalcularCobroParqueadero {
 	static final int HORA_MOTO = 500;
 	static final int DIA_MOTO = 4000;
 	
-
 	public long cobroParqueadero(TipoVehiculo tipo, Date fechaActual, Date fechaIngreso) {
 		
 		int cobroHora;
@@ -53,12 +52,5 @@ public class CalcularCobroParqueadero {
 	    	
 	    return  pago + cobroHora;
 	}
-
-	
-	public Date fechaActual() {		
-		return new Date();
-	}
-	
-	
 
 }

@@ -4,6 +4,7 @@ package com.ceiba.parqueadero.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,16 +16,16 @@ import com.ceiba.parqueadero.modelo.FichaTecnicaDeIngreso;
 import com.ceiba.parqueadero.servicio.VigilanteServicio;
 import com.ceiba.parqueadero.util.RestCorrecta;
 
-
 @RestController
 public class VigilanteControlador {
 
+
 	@Autowired
-	protected VigilanteServicio vigilanteServicio;
+	VigilanteServicio vigilanteServicio;
 	
 	@RequestMapping(value="/registrarVehiculo", method = RequestMethod.POST)
-	public RestCorrecta registrarVehiculo(@RequestBody FichaTecnicaDeIngreso ftdi){		
-		this.vigilanteServicio.registrarVehiculo(ftdi);
+	public RestCorrecta registrarVehiculo(@RequestBody FichaTecnicaDeIngreso fichaTecnica){		
+		this.vigilanteServicio.registrarVehiculo(fichaTecnica);
 		return new RestCorrecta(HttpStatus.OK.value(),"operacion exitosa");
 		
 	}
@@ -37,7 +38,7 @@ public class VigilanteControlador {
 	}
 	
 	@RequestMapping(value="/listarVehiculos", method = RequestMethod.GET)
-	public List<FichaTecnicaDeIngreso> ListarVehiculos(){		
+	public List<FichaTecnicaDeIngreso> ListarVehiculo(){		
 		return this.vigilanteServicio.findAllEstadoActivo();
 	}
 	

@@ -19,14 +19,14 @@ public class ValidacionIngreso{
 	private static final int DOMINGO=1;
 	private static final int LUNES=2;
 	
-
+	@Qualifier("vigilanteRepositorio")
+	private VigilanteRepositorio vigilanteRepositorio;
 	
 	public ValidacionIngreso(VigilanteRepositorio vigilanteRepositorio) {
 		this.vigilanteRepositorio = vigilanteRepositorio;
 	}
 
-	@Qualifier("vigilanteRepositorio")
-	private VigilanteRepositorio vigilanteRepositorio;
+
 		
 	public void validacionPlaca(FichaTecnicaDeIngreso fichaTecnica) {
 			

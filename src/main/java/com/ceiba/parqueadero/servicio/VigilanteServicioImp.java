@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.ceiba.parqueadero.modelo.FichaTecnicaDeIngreso;
@@ -16,15 +17,21 @@ import com.ceiba.parqueadero.util.ValidacionIngreso;
 public class VigilanteServicioImp implements VigilanteServicio {
 	
 	@Autowired
+	@Qualifier("vigilanteRepositorio")
 	private VigilanteRepositorio vigilanteRepositorio;
 	
 	@Autowired
-	ValidacionIngreso validacion;
+	private ValidacionIngreso validacionIngreso;
+
+	
+	public VigilanteServicioImp(VigilanteRepositorio vigilanteRepositorio){
+		this.vigilanteRepositorio = vigilanteRepositorio;
+	}
 
 	@Override
 	public void registrarVehiculo(FichaTecnicaDeIngreso fichaTecnica) {
 	
-		validacion.validacionPlaca(fichaTecnica);
+		//validacionIngreso.validacionPlaca(fichaTecnica);
 		fichaTecnica.setFechaIngreso(new Date());
 		fichaTecnica.setEstado(Estados.ACTIVO);
 		vigilanteRepositorio.save(fichaTecnica);

@@ -17,8 +17,11 @@ public interface VigilanteRepositorio extends JpaRepository<FichaTecnicaDeIngres
 	 FichaTecnicaDeIngreso save(FichaTecnicaDeIngreso fichaTecnicaDeIngreso);
 	
 	 @Query(value = "SELECT count(*) FROM ficha_tecnica_ingresos where estado='ACTIVO' AND placa=:placa", nativeQuery = true)
-	 long findbyActivoYPlaca(@Param("placa") String placa);
+	 long existbyActivoYPlaca(@Param("placa") String placa);
 
+	 @Query(value = "SELECT * FROM ficha_tecnica_ingresos where estado='ACTIVO' AND placa=:placa", nativeQuery = true)
+	 FichaTecnicaDeIngreso findbyPlacaYvehiculoActivo(@Param("placa") String placa);
+	 
 	 @Query(value = "SELECT count(*) FROM ficha_tecnica_ingresos where estado='ACTIVO' AND tipo_vehiculo=:tipo",nativeQuery = true)
 	 long countActivoYTipo(@Param("tipo") TipoVehiculo tipo);
 	 

@@ -3,28 +3,24 @@ package com.ceiba.parqueadero.util;
 import java.util.Date;
 
 
-public class CalcularCobroParqueadero {
+public class CalculadoraCobroParqueadero {
 	
-	public CalcularCobroParqueadero() {
+	public CalculadoraCobroParqueadero() {
 		super();
 	}
 
-	static final int HORA_CARRO = 1000;
-	static final int DIA_CARRO = 8000;
-	static final int HORA_MOTO = 500;
-	static final int DIA_MOTO = 4000;
-	
+
 	public long cobroParqueadero(TipoVehiculo tipo, Date fechaActual, Date fechaIngreso) {
 		
 		int cobroHora;
 		int cobroDia;
 		
 		if(tipo == TipoVehiculo.CARRO) {
-			cobroHora=HORA_CARRO;
-			cobroDia=DIA_CARRO;
+			cobroHora=Constante.HORA_CARRO;
+			cobroDia=Constante.DIA_CARRO;
 		}else {
-			cobroHora=HORA_MOTO;
-			cobroDia=DIA_MOTO;
+			cobroHora=Constante.HORA_MOTO;
+			cobroDia=Constante.DIA_MOTO;
 		}
 	    return calcularPago(fechaActual, fechaIngreso, cobroHora, cobroDia);
 		

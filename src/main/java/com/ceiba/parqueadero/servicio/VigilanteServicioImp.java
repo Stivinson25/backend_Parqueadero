@@ -7,41 +7,56 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.ceiba.parqueadero.modelo.Factura;
 import com.ceiba.parqueadero.modelo.FichaTecnicaDeIngreso;
 import com.ceiba.parqueadero.repositorio.VigilanteRepositorio;
+import com.ceiba.parqueadero.util.CalculadoraCobroParqueadero;
 import com.ceiba.parqueadero.util.Estados;
 import com.ceiba.parqueadero.util.TipoVehiculo;
-import com.ceiba.parqueadero.util.ValidacionIngreso;
 
-@Service
-public class VigilanteServicioImp implements VigilanteServicio {
+
+@Service("vigilanteServicioImp")
+public class VigilanteServicioImp implements VigilanteServicio{
 	
 	@Autowired
 	@Qualifier("vigilanteRepositorio")
-	private VigilanteRepositorio vigilanteRepositorio;
+	VigilanteRepositorio vigilanteRepositorio;
 	
 	@Autowired
-	private ValidacionIngreso validacionIngreso;
-
+	@Qualifier("validacionIngresoServicioImp")
+	ValidacionIngresoServicioImp validacionIngreso;
 	
-	public VigilanteServicioImp(VigilanteRepositorio vigilanteRepositorio){
-		this.vigilanteRepositorio = vigilanteRepositorio;
-	}
+	@Autowired
+	@Qualifier("validacionSalidaServicioImp")
+	ValidacionSalidaServicioImp validacionSalida;
+	
 
 	@Override
 	public void registrarVehiculo(FichaTecnicaDeIngreso fichaTecnica) {
 	
-		//validacionIngreso.validacionPlaca(fichaTecnica);
+		validacionIngreso.validar(fichaTecnica);
 		fichaTecnica.setFechaIngreso(new Date());
 		fichaTecnica.setEstado(Estados.ACTIVO);
 		vigilanteRepositorio.save(fichaTecnica);
 	}
 
 	@Override
-	public long facturar(FichaTecnicaDeIngreso fichaTecnica) {
-
+	public Factura facturar(FichaTecnicaDeIngreso fichaTecnica) {
 		
-		return 0;
+		long valorApagar=0;
+		CalculadoraCobroParqueadero cobro= new CalculadoraCobroParqueadero();
+		FichaTecnicaDeIngreso fichaTecnicaBD=new FichaTecnicaDeIngreso();
+		
+		fichaTecnicaBD=validacionSalida.validacionPlaca(fichaTecnica);
+		
+		Date fechaSalida=new Date();
+		fichaTecnicaBD.setFechaSalida(fechaSalida);
+		fichaTecnicaBD.setEstado(Estados.DESACTIVO);
+		vigilanteRepositorio.save(fichaTecnicaBD);
+		
+		valorApagar=cobro.cobroParqueadero(fichaTecnicaBD.getTipoVehiculo(),fechaSalida,fichaTecnicaBD.getFechaIngreso());
+		
+		return new Factura(fichaTecnicaBD.getPlaca(), fichaTecnicaBD.getTipoVehiculo(), valorApagar);
 	}
 	
 	
@@ -53,7 +68,7 @@ public class VigilanteServicioImp implements VigilanteServicio {
 
 	@Override
 	public long findbyActivoYPlaca(String verificarPlaca) {
-		return vigilanteRepositorio.findbyActivoYPlaca(verificarPlaca);
+		return vigilanteRepositorio.existbyActivoYPlaca(verificarPlaca);
 		
 	}
 

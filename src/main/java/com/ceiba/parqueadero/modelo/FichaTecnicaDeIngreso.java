@@ -140,10 +140,6 @@ public class FichaTecnicaDeIngreso  implements Serializable{
 	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
-
-	public Object thenReturn(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}    
+  
 
 }

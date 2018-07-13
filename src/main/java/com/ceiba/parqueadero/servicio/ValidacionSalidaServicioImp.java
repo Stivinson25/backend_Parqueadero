@@ -16,7 +16,7 @@ public class ValidacionSalidaServicioImp implements ValidacionSalidaServicio {
 	
 	@Override
 	public FichaTecnicaDeIngreso validarSalida(FichaTecnicaDeIngreso fichaTecnica) {
-		//FichaTecnicaDeIngreso fichaTecnicaDeRetiro = vigilanteRepositorio.findbyPlacaYvehiculoActivo(fichaTecnica.getPlaca(),fichaTecnica.getTipoVehiculo());
+		
 		FichaTecnicaDeIngreso fichaTecnicaDeRetiro = vigilanteRepositorio.findbyPlacaYvehiculoActivo2(fichaTecnica.getPlaca());
 		if(validacionCamposRequeridos(fichaTecnica)) {
 			throw new RestIncorrecta(HttpStatus.BAD_REQUEST.value(),"El campo de la Placa no esta diligenciado");

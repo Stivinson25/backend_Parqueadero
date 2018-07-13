@@ -58,17 +58,17 @@ public class Factura {
 		if (getClass() != obj.getClass())
 			return false;
 		Factura other = (Factura) obj;
-		if (placa == null) {
-			if (other.placa != null)
-				return false;
-		} 
+		
+		if (placa == null || other.placa != null)
+				return false; 
+		
 		if (!placa.equals(other.placa))
 			return false;
-		if (tipoVehiculo != other.tipoVehiculo)
+		else if (tipoVehiculo != other.tipoVehiculo)
 			return false;
-		if (valorApagar != other.valorApagar)
-			return false;
-		return true;
+		else if (valorApagar != other.valorApagar)
+			return (valorApagar != other.valorApagar);
+		else return true;
 	}
 	
 	

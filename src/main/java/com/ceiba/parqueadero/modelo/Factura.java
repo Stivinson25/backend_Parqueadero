@@ -56,12 +56,13 @@ public class Factura {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		
 		Factura other = (Factura) obj;
 		
 		if (placa == null && other.placa != null)
 			return false;
 		try {
-			if (!placa.equals(other.placa))
+			if (!other.placa.equals(placa))
 				return false;
 			else if (tipoVehiculo != other.tipoVehiculo)
 				return false;

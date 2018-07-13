@@ -53,8 +53,8 @@ public class ValidacionSalidaTests {
 	@Test
 	public void validarExisteCarro(){	
 		//arrange	
-		FichaTecnicaDeIngreso fichaTecnica = new FichaTecnicaDeIngreso(0,"PLACA",TipoVehiculo.CARRO,null,null,0,null);
-		Mockito.when(vigilanteRepositorio.findbyPlacaYvehiculoActivo(fichaTecnica.getPlaca(),fichaTecnica.getTipoVehiculo())).thenReturn(null);
+		FichaTecnicaDeIngreso fichaTecnica = new FichaTecnicaDeIngreso(0,"PLACA",TipoVehiculo.CARRO,null,null,0,null);		
+		Mockito.when(vigilanteRepositorio.findbyPlacaYvehiculoActivo2(fichaTecnica.getPlaca())).thenReturn(null);
 		//act	
 	    try {
 	    	validacion.validarSalida(fichaTecnica);

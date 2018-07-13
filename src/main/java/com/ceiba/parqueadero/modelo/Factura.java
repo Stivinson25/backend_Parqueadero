@@ -9,7 +9,6 @@ public class Factura {
 	private long valorApagar;
 	
 	public Factura(String placa, TipoVehiculo tipoVehiculo, long valorApagar) {
-		super();
 		this.placa = placa;
 		this.tipoVehiculo = tipoVehiculo;
 		this.valorApagar = valorApagar;

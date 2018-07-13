@@ -40,11 +40,35 @@ public class Factura {
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((placa == null) ? 0 : placa.hashCode());
+		result = prime * result + ((tipoVehiculo == null) ? 0 : tipoVehiculo.hashCode());
+		result = prime * result + (int) (valorApagar ^ (valorApagar >>> 32));
+		return result;
+	}
 
-		Factura facturaAcomparar = (Factura) obj;
-		
-		return this.valorApagar == facturaAcomparar.valorApagar && tipoVehiculo.equals(facturaAcomparar.tipoVehiculo);
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Factura other = (Factura) obj;
+		if (placa == null) {
+			if (other.placa != null)
+				return false;
+		} 
+		if (!placa.equals(other.placa))
+			return false;
+		if (tipoVehiculo != other.tipoVehiculo)
+			return false;
+		if (valorApagar != other.valorApagar)
+			return false;
+		return true;
 	}
 	
 	

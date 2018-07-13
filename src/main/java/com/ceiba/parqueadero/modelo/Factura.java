@@ -60,13 +60,18 @@ public class Factura {
 		
 		if (placa == null && other.placa != null)
 			return false;
-		else if (!placa.equals(other.placa))
+		try {
+			if (!placa.equals(other.placa))
+				return false;
+			else if (tipoVehiculo != other.tipoVehiculo)
+				return false;
+			else if (valorApagar != other.valorApagar)
+				return (valorApagar != other.valorApagar);
+			else return true;
+		}catch (Exception e) {
 			return false;
-		else if (tipoVehiculo != other.tipoVehiculo)
-			return false;
-		else if (valorApagar != other.valorApagar)
-			return (valorApagar != other.valorApagar);
-		else return true;
+		}
+
 	}
 	
 	

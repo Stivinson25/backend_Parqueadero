@@ -2,7 +2,7 @@ package com.ceiba.parqueadero.util;
 
 public class Constante {
 	
-	public Constante() {
+	private Constante() {
 		super();
 	}
 	

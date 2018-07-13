@@ -29,7 +29,6 @@ import com.ceiba.parqueadero.util.TipoVehiculo;
 public class VigilanteServicioTest {
 	
 	
-
 	@Autowired
     VigilanteRepositorio vigilanteRepositorio;
 	

@@ -19,13 +19,17 @@ public interface VigilanteRepositorio extends JpaRepository<FichaTecnicaDeIngres
 	 @Query(value = "SELECT count(*) FROM ficha_tecnica_ingresos where estado='ACTIVO' AND placa=:placa", nativeQuery = true)
 	 long existbyActivoYPlaca(@Param("placa") String placa);
 
-	 @Query(value = "SELECT * FROM ficha_tecnica_ingresos where estado='ACTIVO' AND placa=:placa", nativeQuery = true)
-	 FichaTecnicaDeIngreso findbyPlacaYvehiculoActivo(@Param("placa") String placa);
+	 @Query(value = "SELECT * FROM ficha_tecnica_ingresos where estado='ACTIVO' AND placa=:placa AND tipo_vehiculo=:tipo", nativeQuery = true)
+	 FichaTecnicaDeIngreso findbyPlacaYvehiculoActivo(@Param("placa") String placa2, @Param("tipo") TipoVehiculo tipo);
+
+	 @Query(value = "SELECT * FROM ficha_tecnica_ingresos where estado ='ACTIVO' AND placa=:placa", nativeQuery = true)
+	 FichaTecnicaDeIngreso findbyPlacaYvehiculoActivo2(@Param("placa") String placa);
+	 
 	 
 	 @Query(value = "SELECT count(*) FROM ficha_tecnica_ingresos where estado='ACTIVO' AND tipo_vehiculo=:tipo",nativeQuery = true)
 	 long countActivoYTipo(@Param("tipo") TipoVehiculo tipo);
 	 
-	 @Query(value = "SELECT * FROM ficha_tecnica_ingresos where estado='ACTIVO'",nativeQuery = true)
+	 @Query(value = "SELECT * FROM ficha_tecnica_ingresos where estado='ACTIVO' order by fecha_ingreso DESC",nativeQuery = true)
 	 List<FichaTecnicaDeIngreso> findAllEstadoActivo();	
 	
 }

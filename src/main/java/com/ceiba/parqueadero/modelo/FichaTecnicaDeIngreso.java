@@ -41,7 +41,7 @@ public class FichaTecnicaDeIngreso  implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaIngreso;
 	
-	@Column(name = "fecha_salida", updatable=false, length = 255)
+	@Column(name = "fecha_salida", length = 255)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaSalida;
 	

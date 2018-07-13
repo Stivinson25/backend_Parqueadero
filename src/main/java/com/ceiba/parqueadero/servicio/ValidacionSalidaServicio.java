@@ -4,6 +4,6 @@ import com.ceiba.parqueadero.modelo.FichaTecnicaDeIngreso;
 
 public interface ValidacionSalidaServicio {
 	
-	FichaTecnicaDeIngreso validacionPlaca(FichaTecnicaDeIngreso fichaTecnica);
+	FichaTecnicaDeIngreso validarSalida(FichaTecnicaDeIngreso fichaTecnica);
 
 }

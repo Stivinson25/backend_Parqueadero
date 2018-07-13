@@ -39,6 +39,14 @@ public class Factura {
 		this.valorApagar = valorApagar;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+
+		Factura facturaAcomparar = (Factura) obj;
+		
+		return this.valorApagar == facturaAcomparar.valorApagar && tipoVehiculo.equals(facturaAcomparar.tipoVehiculo);
+	}
+	
 	
 
 }

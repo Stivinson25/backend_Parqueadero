@@ -1,7 +1,6 @@
 package com.ceiba.parqueadero.servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -13,27 +12,25 @@ import com.ceiba.parqueadero.util.RestIncorrecta;
 public class ValidacionSalidaServicioImp implements ValidacionSalidaServicio {
 
 	@Autowired
-	@Qualifier("vigilanteRepositorio")
 	VigilanteRepositorio vigilanteRepositorio;
 	
 	@Override
-	public FichaTecnicaDeIngreso validacionPlaca(FichaTecnicaDeIngreso fichaTecnica) {
-		FichaTecnicaDeIngreso fichaTecnicaDeIngreso = new FichaTecnicaDeIngreso();
-		fichaTecnicaDeIngreso= vigilanteRepositorio.findbyPlacaYvehiculoActivo(fichaTecnica.getPlaca());
-
-		if(valiadacionCamposRequeridos(fichaTecnica)) {
+	public FichaTecnicaDeIngreso validarSalida(FichaTecnicaDeIngreso fichaTecnica) {
+		//FichaTecnicaDeIngreso fichaTecnicaDeRetiro = vigilanteRepositorio.findbyPlacaYvehiculoActivo(fichaTecnica.getPlaca(),fichaTecnica.getTipoVehiculo());
+		FichaTecnicaDeIngreso fichaTecnicaDeRetiro = vigilanteRepositorio.findbyPlacaYvehiculoActivo2(fichaTecnica.getPlaca());
+		if(validacionCamposRequeridos(fichaTecnica)) {
 			throw new RestIncorrecta(HttpStatus.BAD_REQUEST.value(),"El campo de la Placa no esta diligenciado");
 		}
 		
-		if(fichaTecnicaDeIngreso == null) {
+		if(fichaTecnicaDeRetiro == null) {
 			throw new RestIncorrecta(HttpStatus.NOT_FOUND.value(),"Este vehiculo no ha ingresado");
 		}
 		
-		return fichaTecnicaDeIngreso;
+		return fichaTecnicaDeRetiro;
 
 	}
 
-	private boolean valiadacionCamposRequeridos(FichaTecnicaDeIngreso fichaTecnica) {
+	private boolean validacionCamposRequeridos(FichaTecnicaDeIngreso fichaTecnica) {
 		return (fichaTecnica.getPlaca() == null || fichaTecnica.getPlaca().equals("") );
 	}
 

@@ -11,5 +11,7 @@ public class Constante {
 	public static final char INICIO_DE_PLACA_NO_PERMITIDA = 'A';
 	public static final int DOMINGO=1;
 	public static final int LUNES=2;
+	public static final int NO_EXISTE_VEHICULO = 0;
+	public static final int EXISTE_VEHICULO = 1;
 	
 }

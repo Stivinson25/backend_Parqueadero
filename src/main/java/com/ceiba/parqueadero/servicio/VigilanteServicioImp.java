@@ -33,7 +33,8 @@ public class VigilanteServicioImp implements VigilanteServicio{
 
 	@Override
 	public void registrarVehiculo(FichaTecnicaDeIngreso fichaTecnica) {
-	
+		
+		fichaTecnica.setPlaca(fichaTecnica.getPlaca().toUpperCase());
 		validacionIngreso.validar(fichaTecnica);
 		fichaTecnica.setFechaIngreso(new Date());
 		fichaTecnica.setEstado(Estados.ACTIVO);
@@ -45,17 +46,18 @@ public class VigilanteServicioImp implements VigilanteServicio{
 		
 		long valorApagar=0;
 		CalculadoraCobroParqueadero cobro= new CalculadoraCobroParqueadero();
-		FichaTecnicaDeIngreso fichaTecnicaBD=new FichaTecnicaDeIngreso();
-		
-		fichaTecnicaBD=validacionSalida.validacionPlaca(fichaTecnica);
-		
+		fichaTecnica.setPlaca(fichaTecnica.getPlaca().toUpperCase());
+		FichaTecnicaDeIngreso fichaTecnicaBD=validacionSalida.validarSalida(fichaTecnica);
+	
 		Date fechaSalida=new Date();
 		fichaTecnicaBD.setFechaSalida(fechaSalida);
 		fichaTecnicaBD.setEstado(Estados.DESACTIVO);
 		vigilanteRepositorio.save(fichaTecnicaBD);
 		
 		valorApagar=cobro.cobroParqueadero(fichaTecnicaBD.getTipoVehiculo(),fechaSalida,fichaTecnicaBD.getFechaIngreso());
-		
+		if(fichaTecnicaBD.getTipoVehiculo() == TipoVehiculo.MOTO && fichaTecnicaBD.getCilindraje()>=500) {
+			valorApagar+=2000;
+		}
 		return new Factura(fichaTecnicaBD.getPlaca(), fichaTecnicaBD.getTipoVehiculo(), valorApagar);
 	}
 	

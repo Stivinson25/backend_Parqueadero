@@ -17,11 +17,12 @@ import com.ceiba.parqueadero.util.TipoVehiculo;
 @Service("validacionIngresoServicioImp")
 public class ValidacionIngresoServicioImp implements ValidacionIngresoServicio {
 
+	
 	@Autowired
 	VigilanteRepositorio vigilanteRepositorio;
 	
 	@Override
-	public void validar(FichaTecnicaDeIngreso fichaTecnica) {
+	public void validar(FichaTecnicaDeIngreso fichaTecnica){
 		
 		if(validacionCamposRequeridos(fichaTecnica.getPlaca())) {
 			throw new RestIncorrecta(HttpStatus.BAD_REQUEST.value(),"El campo de la Placa no esta diligenciado");
@@ -29,8 +30,8 @@ public class ValidacionIngresoServicioImp implements ValidacionIngresoServicio {
 		if(!validarCuposDisponibles(fichaTecnica.getTipoVehiculo())) {
 			throw new RestIncorrecta(HttpStatus.SERVICE_UNAVAILABLE.value(),"No hay cupos Disponibles en el parqueadero");
 		}
-		if(validacionExisteVehiculo(fichaTecnica) != 0) {
-			throw new RestIncorrecta(HttpStatus.EXPECTATION_FAILED.value(),"Este vehiculo ya esta registrado");
+		if(validacionExisteVehiculo(fichaTecnica) != Constante.NO_EXISTE_VEHICULO) {
+			throw new RestIncorrecta(HttpStatus.NOT_ACCEPTABLE.value(),"Este vehiculo ya esta registrado");
 		}
 		if(validarTipoVehiculoYPlaca(fichaTecnica) && validarDiaDeLaSemana()){
 			throw new RestIncorrecta(HttpStatus.NOT_ACCEPTABLE.value(),"Este dia el vehiculo no tiene autorizacion de ingreso");

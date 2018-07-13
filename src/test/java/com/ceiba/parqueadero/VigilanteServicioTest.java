@@ -62,7 +62,6 @@ public class VigilanteServicioTest {
     	//Act
     	Factura factura=vigilanteServico.facturar(fichaTecnica);
         //Assert
-    	System.out.println(factura);
         assertEquals(valorACobrar,factura);	
     }
 }

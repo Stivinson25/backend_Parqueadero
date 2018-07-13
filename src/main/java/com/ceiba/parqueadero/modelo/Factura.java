@@ -59,10 +59,9 @@ public class Factura {
 			return false;
 		Factura other = (Factura) obj;
 		
-		if (placa == null || other.placa != null)
-				return false; 
-		
-		if (!placa.equals(other.placa))
+		if (placa == null && other.placa != null)
+			return false;
+		else if (!placa.equals(other.placa))
 			return false;
 		else if (tipoVehiculo != other.tipoVehiculo)
 			return false;

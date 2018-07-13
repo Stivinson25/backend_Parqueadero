@@ -2,6 +2,10 @@ package com.ceiba.parqueadero.util;
 
 public class Constante {
 	
+	public Constante() {
+		super();
+	}
+	
 	public static final int HORA_CARRO = 1000;
 	public static final int DIA_CARRO = 8000;
 	public static final int HORA_MOTO = 500;
